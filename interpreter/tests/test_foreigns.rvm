@@ -1,0 +1,27 @@
+f:
+  const r4, print_string
+  const r5, "\n"
+  call r4, 0, 0
+  call r4, 5, 5
+  call r4, 1, 1
+  call r4, 5, 5
+  call r4, 2, 2
+  call r4, 5, 5
+  ret r5
+
+main:
+  const r0, iter
+  mk_tab r1
+  const r2, "key1"
+  const r3, "value1"
+  wr_tab r1,r2,r3
+  const r2, "key2"
+  const r3, "value2"
+  wr_tab r1,r2,r3
+  const r2, "key3"
+  const r3, "value3"
+  wr_tab r1,r2,r3
+  const r2, f
+  const r3, "x"
+  call r0, 1, 3
+  ret r0

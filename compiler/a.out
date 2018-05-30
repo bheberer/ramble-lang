@@ -1,0 +1,629 @@
+map_insert:
+  mk_tab r17
+  rd_glob r18, classtable
+  const r19, "#nil"
+  rd_tab r20, r18, r19
+  const r18, "#vtable"
+  wr_tab r17, r18, r20
+  const r18, "#type"
+  const r19, "#nil"
+  wr_tab r17, r18, r19
+  const r18, "#contents"
+  const r19, "nil"
+  wr_tab r17, r18, r19
+  const r21, "#mapcontents"
+  rd_tab r24, r2, r21
+  const r21, "#contents"
+  rd_tab r23, r0, r21
+  const r59, to_s
+  mov r60, r23
+  call r59, 60, 60
+  const r21, "object"
+  eq r22, r60, r21
+  if_zero r22, 2
+  wr_tab r24, r0, r1
+  jmp 1
+  wr_tab r24, r23, r1
+  mov r0, r17
+  ret r0
+int_add:
+  const r21, "#contents"
+  rd_tab r22, r1, r21
+  rd_tab r23, r0, r21
+  add r24, r22, r23
+  mk_tab r43
+  rd_glob r44, classtable
+  const r45, "#int"
+  rd_tab r46, r44, r45
+  const r44, "#vtable"
+  wr_tab r43, r44, r46
+  const r44, "#contents"
+  const r45, 0
+  wr_tab r43, r44, r45
+  const r44, "#type"
+  const r45, "#int"
+  wr_tab r43, r44, r45
+  wr_tab r43, r21, r24
+  mov r0, r43
+  ret r0
+obj_print:
+  const r21, "#contents"
+  rd_tab r22, r0, r21
+  mk_tab r17
+  rd_glob r18, classtable
+  const r19, "#nil"
+  rd_tab r20, r18, r19
+  const r18, "#vtable"
+  wr_tab r17, r18, r20
+  const r18, "#type"
+  const r19, "#nil"
+  wr_tab r17, r18, r19
+  const r18, "#contents"
+  const r19, "nil"
+  wr_tab r17, r18, r19
+  const r21, to_s
+  call r21, 22, 22
+  const r21, print_string
+  call r21, 22, 22
+  mov r0, r17
+  ret r0
+add_super_entry_to_vtable:
+  wr_tab r2, r0, r1
+  ret r2
+int_mul:
+  const r21, "#contents"
+  rd_tab r22, r1, r21
+  rd_tab r23, r0, r21
+  mul r24, r22, r23
+  mk_tab r51
+  rd_glob r52, classtable
+  const r53, "#int"
+  rd_tab r54, r52, r53
+  const r52, "#vtable"
+  wr_tab r51, r52, r54
+  const r52, "#contents"
+  const r53, 0
+  wr_tab r51, r52, r53
+  const r52, "#type"
+  const r53, "#int"
+  wr_tab r51, r52, r53
+  wr_tab r51, r21, r24
+  mov r0, r51
+  ret r0
+str_concat:
+  const r21, "#contents"
+  rd_tab r22, r1, r21
+  rd_tab r23, r0, r21
+  const r24, concat
+  call r24, 22, 23
+  mk_tab r35
+  rd_glob r36, classtable
+  const r37, "#str"
+  rd_tab r38, r36, r37
+  const r36, "#vtable"
+  wr_tab r35, r36, r38
+  const r36, "#contents"
+  const r37, ""
+  wr_tab r35, r36, r37
+  const r36, "#type"
+  const r37, "#str"
+  wr_tab r35, r36, r37
+  wr_tab r35, r21, r22
+  mov r0, r35
+  ret r0
+C_add:
+  mk_tab r70
+  rd_glob r71, classtable
+  const r72, "C"
+  rd_tab r73, r71, r72
+  const r71, "#vtable"
+  wr_tab r70, r71, r73
+  const r71, "#type"
+  const r72, "C"
+  wr_tab r70, r71, r72
+  const r71, "#contents"
+  const r72, "object"
+  wr_tab r70, r71, r72
+  mov r74, r0
+  mov r76, r1
+  mov r78, r76
+  mov r79, r74
+  rd_glob r80, classtable
+  const r81, "#type"
+  rd_tab r82, r74, r81
+  rd_tab r81, r80, r82
+  const r82, "+"
+  has_tab r80, r81, r82
+  if_zero r80, 3
+  rd_tab r83, r81, r82
+  call r83, 78, 79
+  jmp 2
+  const r80, "No such method"
+  halt r80
+  ret r78
+obj_equal:
+  mk_tab r17
+  rd_glob r18, classtable
+  const r19, "#nil"
+  rd_tab r20, r18, r19
+  const r18, "#vtable"
+  wr_tab r17, r18, r20
+  const r18, "#type"
+  const r19, "#nil"
+  wr_tab r17, r18, r19
+  const r18, "#contents"
+  const r19, "nil"
+  wr_tab r17, r18, r19
+  mk_tab r27
+  rd_glob r28, classtable
+  const r29, "#int"
+  rd_tab r30, r28, r29
+  const r28, "#vtable"
+  wr_tab r27, r28, r30
+  const r28, "#contents"
+  const r29, 1
+  wr_tab r27, r28, r29
+  const r28, "#type"
+  const r29, "#int"
+  wr_tab r27, r28, r29
+  const r21, "#type"
+  rd_tab r23, r0, r21
+  rd_tab r24, r1, r21
+  eq r21, r23, r24
+  if_zero r21, 12
+  const r21, "object"
+  eq r25, r21, r23
+  if_zero r25, 2
+  eq r25, r0, r1
+  jmp 5
+  const r21, "#contents"
+  rd_tab r23, r0, r21
+  rd_tab r24, r1, r21
+  eq r25, r23, r24
+  if_zero r25, 2
+  mov r26, r27
+  jmp 1
+  mov r26, r17
+  mov r0, r26
+  ret r0
+main:
+  mk_tab r0
+  const r1, "equal?"
+  const r2, obj_equal
+  wr_tab r0, r1, r2
+  const r1, "to_s"
+  const r2, obj_to_s
+  wr_tab r0, r1, r2
+  const r1, "say"
+  const r2, obj_print
+  wr_tab r0, r1, r2
+  mk_tab r3
+  const r4, "equal?"
+  const r5, obj_equal
+  wr_tab r3, r4, r5
+  const r4, "to_s"
+  const r5, obj_to_s
+  wr_tab r3, r4, r5
+  const r4, "say"
+  const r5, obj_print
+  wr_tab r3, r4, r5
+  mk_tab r6
+  const r7, "+"
+  const r8, str_concat
+  wr_tab r6, r7, r8
+  const r7, "length"
+  const r8, str_length
+  wr_tab r6, r7, r8
+  const r7, "equal?"
+  const r8, obj_equal
+  wr_tab r6, r7, r8
+  const r7, "to_s"
+  const r8, obj_to_s
+  wr_tab r6, r7, r8
+  const r7, "say"
+  const r8, obj_print
+  wr_tab r6, r7, r8
+  mk_tab r9
+  const r10, "+"
+  const r11, int_add
+  wr_tab r9, r10, r11
+  const r10, "-"
+  const r11, int_sub
+  wr_tab r9, r10, r11
+  const r10, "*"
+  const r11, int_mul
+  wr_tab r9, r10, r11
+  const r10, "/"
+  const r11, int_div
+  wr_tab r9, r10, r11
+  const r10, "equal?"
+  const r11, obj_equal
+  wr_tab r9, r10, r11
+  const r10, "to_s"
+  const r11, obj_to_s
+  wr_tab r9, r10, r11
+  const r10, "say"
+  const r11, obj_print
+  wr_tab r9, r10, r11
+  mk_tab r12
+  const r13, "find"
+  const r14, map_find
+  wr_tab r12, r13, r14
+  const r13, "insert"
+  const r14, map_insert
+  wr_tab r12, r13, r14
+  const r13, "has"
+  const r14, map_has
+  wr_tab r12, r13, r14
+  const r13, "iter"
+  const r14, map_iter
+  wr_tab r12, r13, r14
+  const r13, "equal?"
+  const r14, obj_equal
+  wr_tab r12, r13, r14
+  const r13, "to_s"
+  const r14, obj_to_s
+  wr_tab r12, r13, r14
+  const r13, "say"
+  const r14, obj_print
+  wr_tab r12, r13, r14
+  mk_tab r16
+  const r15, "#obj"
+  wr_tab r16, r15, r3
+  const r15, "#nil"
+  wr_tab r16, r15, r0
+  const r15, "#str"
+  wr_tab r16, r15, r6
+  const r15, "#int"
+  wr_tab r16, r15, r9
+  const r15, "#map"
+  wr_tab r16, r15, r12
+  wr_glob classtable, r16
+  mk_tab r69
+  const r84, "add"
+  const r85, C_add
+  wr_tab r69, r84, r85
+  rd_glob r86, classtable
+  const r85, "#obj"
+  rd_tab r87, r86, r85
+  const r85, iter
+  mov r88, r87
+  const r89, add_super_entry_to_vtable
+  mov r90, r69
+  call r85, 88, 90
+  rd_glob r91, classtable
+  const r92, "C"
+  wr_tab r91, r92, r69
+  mk_tab r93
+  rd_glob r94, classtable
+  const r95, "#obj"
+  rd_tab r96, r94, r95
+  const r94, "#vtable"
+  wr_tab r93, r94, r96
+  const r94, "#type"
+  const r95, "#obj"
+  wr_tab r93, r94, r95
+  const r94, "#contents"
+  const r95, "object"
+  wr_tab r93, r94, r95
+  mk_tab r98
+  rd_glob r99, classtable
+  const r100, "C"
+  rd_tab r101, r99, r100
+  const r99, "#vtable"
+  wr_tab r98, r99, r101
+  const r99, "#type"
+  const r100, "C"
+  wr_tab r98, r99, r100
+  const r99, "#contents"
+  const r100, "object"
+  wr_tab r98, r99, r100
+  mov r102, r98
+  mov r97, r102
+  mov r103, r102
+  mk_tab r109
+  rd_glob r110, classtable
+  const r111, "#str"
+  rd_tab r112, r110, r111
+  const r110, "#vtable"
+  wr_tab r109, r110, r112
+  const r110, "#contents"
+  const r111, "second\n"
+  wr_tab r109, r110, r111
+  const r110, "#type"
+  const r111, "#str"
+  wr_tab r109, r110, r111
+  mk_tab r105
+  rd_glob r106, classtable
+  const r107, "#str"
+  rd_tab r108, r106, r107
+  const r106, "#vtable"
+  wr_tab r105, r106, r108
+  const r106, "#contents"
+  const r107, "first "
+  wr_tab r105, r106, r107
+  const r106, "#type"
+  const r107, "#str"
+  wr_tab r105, r106, r107
+  mov r114, r105
+  mov r115, r109
+  mov r116, r103
+  rd_glob r117, classtable
+  const r118, "#type"
+  rd_tab r119, r103, r118
+  rd_tab r118, r117, r119
+  const r119, "add"
+  has_tab r117, r118, r119
+  if_zero r117, 3
+  rd_tab r120, r118, r119
+  call r120, 114, 116
+  jmp 2
+  const r117, "No such method"
+  halt r117
+  mov r123, r114
+  rd_glob r124, classtable
+  const r125, "#type"
+  rd_tab r126, r114, r125
+  rd_tab r125, r124, r126
+  const r126, "say"
+  has_tab r124, r125, r126
+  if_zero r124, 3
+  rd_tab r127, r125, r126
+  call r127, 123, 123
+  jmp 2
+  const r124, "No such method"
+  halt r124
+  mov r128, r102
+  mk_tab r134
+  rd_glob r135, classtable
+  const r136, "#int"
+  rd_tab r137, r135, r136
+  const r135, "#vtable"
+  wr_tab r134, r135, r137
+  const r135, "#contents"
+  const r136, 5
+  wr_tab r134, r135, r136
+  const r135, "#type"
+  const r136, "#int"
+  wr_tab r134, r135, r136
+  mk_tab r130
+  rd_glob r131, classtable
+  const r132, "#int"
+  rd_tab r133, r131, r132
+  const r131, "#vtable"
+  wr_tab r130, r131, r133
+  const r131, "#contents"
+  const r132, 3
+  wr_tab r130, r131, r132
+  const r131, "#type"
+  const r132, "#int"
+  wr_tab r130, r131, r132
+  mov r139, r130
+  mov r140, r134
+  mov r141, r128
+  rd_glob r142, classtable
+  const r143, "#type"
+  rd_tab r144, r128, r143
+  rd_tab r143, r142, r144
+  const r144, "add"
+  has_tab r142, r143, r144
+  if_zero r142, 3
+  rd_tab r145, r143, r144
+  call r145, 139, 141
+  jmp 2
+  const r142, "No such method"
+  halt r142
+  mov r148, r139
+  rd_glob r149, classtable
+  const r150, "#type"
+  rd_tab r151, r139, r150
+  rd_tab r150, r149, r151
+  const r151, "say"
+  has_tab r149, r150, r151
+  if_zero r149, 3
+  rd_tab r152, r150, r151
+  call r152, 148, 148
+  jmp 2
+  const r149, "No such method"
+  halt r149
+  mk_tab r153
+  rd_glob r154, classtable
+  const r155, "#str"
+  rd_tab r156, r154, r155
+  const r154, "#vtable"
+  wr_tab r153, r154, r156
+  const r154, "#contents"
+  const r155, "\n"
+  wr_tab r153, r154, r155
+  const r154, "#type"
+  const r155, "#str"
+  wr_tab r153, r154, r155
+  mov r159, r153
+  rd_glob r160, classtable
+  const r161, "#type"
+  rd_tab r162, r153, r161
+  rd_tab r161, r160, r162
+  const r162, "say"
+  has_tab r160, r161, r162
+  if_zero r160, 3
+  rd_tab r163, r161, r162
+  call r163, 159, 159
+  jmp 2
+  const r160, "No such method"
+  halt r160
+  const r164, obj_to_s
+  call r164, 159, 159
+  const r164, "#contents"
+  rd_tab r165, r159, r164
+  const r164, to_s
+  call r164, 165, 165
+  ret r165
+map_iter:
+  mk_tab r17
+  rd_glob r18, classtable
+  const r19, "#nil"
+  rd_tab r20, r18, r19
+  const r18, "#vtable"
+  wr_tab r17, r18, r20
+  const r18, "#type"
+  const r19, "#nil"
+  wr_tab r17, r18, r19
+  const r18, "#contents"
+  const r19, "nil"
+  wr_tab r17, r18, r19
+  const r21, "#mapcontents"
+  rd_tab r24, r1, r21
+  rd_glob r21, classtable
+  const r22, "#type"
+  rd_tab r23, r0, r22
+  rd_tab r22, r21, r23
+  const r23, "call"
+  rd_tab r21, r22, r23
+  const r22, iter
+  mov r66, r24
+  mov r67, r21
+  mov r68, r0
+  call r22, 66, 68
+  mov r0, r17
+  ret r0
+int_sub:
+  const r21, "#contents"
+  rd_tab r22, r1, r21
+  rd_tab r23, r0, r21
+  sub r24, r22, r23
+  mk_tab r47
+  rd_glob r48, classtable
+  const r49, "#int"
+  rd_tab r50, r48, r49
+  const r48, "#vtable"
+  wr_tab r47, r48, r50
+  const r48, "#contents"
+  const r49, 0
+  wr_tab r47, r48, r49
+  const r48, "#type"
+  const r49, "#int"
+  wr_tab r47, r48, r49
+  wr_tab r47, r21, r24
+  mov r0, r47
+  ret r0
+map_has:
+  mk_tab r17
+  rd_glob r18, classtable
+  const r19, "#nil"
+  rd_tab r20, r18, r19
+  const r18, "#vtable"
+  wr_tab r17, r18, r20
+  const r18, "#type"
+  const r19, "#nil"
+  wr_tab r17, r18, r19
+  const r18, "#contents"
+  const r19, "nil"
+  wr_tab r17, r18, r19
+  mk_tab r62
+  rd_glob r63, classtable
+  const r64, "#int"
+  rd_tab r65, r63, r64
+  const r63, "#vtable"
+  wr_tab r62, r63, r65
+  const r63, "#contents"
+  const r64, 1
+  wr_tab r62, r63, r64
+  const r63, "#type"
+  const r64, "#int"
+  wr_tab r62, r63, r64
+  const r21, "#mapcontents"
+  rd_tab r24, r1, r21
+  const r21, "#contents"
+  rd_tab r23, r0, r21
+  const r21, "object"
+  const r59, to_s
+  mov r60, r23
+  call r59, 60, 60
+  eq r22, r60, r21
+  if_zero r22, 2
+  has_tab r22, r24, r1
+  jmp 1
+  has_tab r22, r24, r23
+  if_zero r22, 2
+  mov r22, r62
+  jmp 1
+  mov r22, r17
+  mov r0, r22
+  ret r0
+map_find:
+  const r21, "#mapcontents"
+  rd_tab r24, r1, r21
+  const r21, "#contents"
+  rd_tab r23, r0, r21
+  const r21, "object"
+  const r59, to_s
+  mov r60, r23
+  call r59, 60, 60
+  eq r22, r60, r21
+  if_zero r22, 2
+  rd_tab r22, r24, r1
+  jmp 1
+  rd_tab r22, r24, r23
+  mov r0, r22
+  ret r0
+int_div:
+  const r21, "#contents"
+  rd_tab r22, r1, r21
+  rd_tab r23, r0, r21
+  div r24, r22, r23
+  mk_tab r55
+  rd_glob r56, classtable
+  const r57, "#int"
+  rd_tab r58, r56, r57
+  const r56, "#vtable"
+  wr_tab r55, r56, r58
+  const r56, "#contents"
+  const r57, 0
+  wr_tab r55, r56, r57
+  const r56, "#type"
+  const r57, "#int"
+  wr_tab r55, r56, r57
+  wr_tab r55, r21, r24
+  mov r0, r55
+  ret r0
+obj_to_s:
+  const r21, "#contents"
+  rd_tab r22, r0, r21
+  mk_tab r31
+  rd_glob r32, classtable
+  const r33, "#str"
+  rd_tab r34, r32, r33
+  const r32, "#vtable"
+  wr_tab r31, r32, r34
+  const r32, "#contents"
+  const r33, ""
+  wr_tab r31, r32, r33
+  const r32, "#type"
+  const r33, "#str"
+  wr_tab r31, r32, r33
+  const r21, to_s
+  call r21, 22, 22
+  const r21, "#contents"
+  wr_tab r31, r21, r22
+  mov r0, r31
+  ret r0
+str_length:
+  const r21, "#contents"
+  rd_tab r22, r0, r21
+  const r24, length
+  call r24, 22, 22
+  mk_tab r39
+  rd_glob r40, classtable
+  const r41, "#int"
+  rd_tab r42, r40, r41
+  const r40, "#vtable"
+  wr_tab r39, r40, r42
+  const r40, "#contents"
+  const r41, 0
+  wr_tab r39, r40, r41
+  const r40, "#type"
+  const r41, "#int"
+  wr_tab r39, r40, r41
+  wr_tab r39, r21, r22
+  mov r0, r39
+  ret r0

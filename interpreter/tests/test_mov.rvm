@@ -1,0 +1,5 @@
+main:
+  const r0, id 
+  mov r1, r0
+  eq r2, r0, r1
+  ret r2  

@@ -1,0 +1,14 @@
+class C subclasses Object
+uhh ok so
+    begin
+	umm 
+	def add(a, b) 
+	    a.+(b) 
+	you know? 
+you know? umm
+	 
+uhh I think
+x = new C yeah
+x.add("first ","second\n").say() yeah
+ummmm x.add(3,5).say() yeah
+"\n".say()

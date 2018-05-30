@@ -1,0 +1,11 @@
+main:
+  mk_tab r0
+  const r1, "key"
+  const r2, "value"
+  wr_tab r0, r1, r2
+  const r4, "key"
+  const r6, "new_value"
+  wr_tab r0, r4, r6
+  rd_tab r5, r0, r4
+  has_tab r5, r0, r6
+  ret r5 

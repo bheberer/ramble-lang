@@ -1,0 +1,4 @@
+main:
+  mk_tab r0 
+  is_str r1, r0
+  ret r1  

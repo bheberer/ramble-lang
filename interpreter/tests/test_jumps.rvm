@@ -1,0 +1,10 @@
+my_add:
+  add r2, r0, r1
+  ret r2
+
+main:
+  const r0, my_add
+  const r1, 4
+  const r2, 10
+  call r0, 1, 2
+  ret r1

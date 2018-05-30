@@ -1,0 +1,33 @@
+# This line is a comment
+
+foo:
+  const r0, 42
+  const r1, -42
+  const r2, foo
+  const r3, "foo"
+  mov r1, r2
+  add r1, r2, r3
+  sub r1, r2, r3
+  mul r1, r2, r3
+  div r1, r2, r3
+  eq r1, r2, r3
+  lt r1, r2, r3
+  leq r1, r2, r3
+  jmp 10
+  jmp -10
+  if_zero r10, 10
+  if_zero r10, -10
+  rd_glob r0, foo
+  wr_glob foo, r0
+  mk_tab r0
+  rd_tab r0, r1, r2
+  wr_tab r0, r1, r2
+  call r0, 10, 20
+  ret r0
+
+main:
+  const r0, foo
+  call r0, 1, 1
+  const r0, 42
+  ret r0
+  halt r0

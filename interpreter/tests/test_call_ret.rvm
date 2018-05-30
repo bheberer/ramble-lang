@@ -1,0 +1,11 @@
+foo:
+  const r6, "the"
+  ret r6
+
+main:
+  const r0, "the"
+  const r1, foo
+  call r1, 1, 1
+  eq r2, r0, r1
+  if_zero r2, 3
+  ret r2

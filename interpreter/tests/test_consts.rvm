@@ -1,0 +1,5 @@
+main:
+ #const r0, 10
+ #const r0, "string"
+ #const r0, identifier
+ ret r0 

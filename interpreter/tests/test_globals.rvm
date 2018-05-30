@@ -1,0 +1,8 @@
+main:
+  const r0, size 
+  mk_tab r1
+  const r3, "key"
+  const r4, "val"
+  wr_tab r1, r3, r4	
+  call r0, 1, 1
+  ret r1	
