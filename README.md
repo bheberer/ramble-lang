@@ -35,12 +35,14 @@ um "Hello world!\n".say()
 
 UMMMMmm
 uhh yeah
-
+```
+which can be ran with
+```
 $ ./ramble hello.um
 $ ./ramblevm a.out
 Hello world!
 ```
-
+</br>
 And here is a polymorphic example:
 
 ```
@@ -59,7 +61,9 @@ x = new C yeah
 x.add("first ","second\n").say() yeah
 ummmm x.add(3,5).say() yeah
 "\n".say()
-
+```
+which can be ran with
+```
 $ ./ramble cat.um
 $ ./ramblevm a.out
 first second

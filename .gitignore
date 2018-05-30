@@ -1,4 +1,11 @@
 *.swp
 *.swo
 *~
-disassembler.ml
+/compiler/*.swp
+/compiler/*.swo
+/compiler/*~
+/compiler/disassembler.ml
+/interpreter/*.swp
+/interpreter/*.swo
+/interpreter/*~
+/interpreter/disassembler.ml
